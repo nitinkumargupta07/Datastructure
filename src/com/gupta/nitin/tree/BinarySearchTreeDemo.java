@@ -344,5 +344,94 @@ public class BinarySearchTreeDemo {
 			}
 		}
 	}
+	
+	public  boolean isBalanced(Node root) {
+		return (maxDepth(root) - minDepth(root) <= 1);
+	}
+
+	public static int minDepth(Node root) {
+		if (root == null) {
+			return 0;
+		}
+		return 1 + Math.min(minDepth(root.left), minDepth(root.right));
+	}
+	
+	/* Print nodes at a given level */
+	void printGivenLevel(Node node, int level, boolean ltr) {
+		if (node == null)
+			return;
+		if (level == 1)
+			System.out.print(node.data + " ");
+		else if (level > 1) {
+			if (ltr != false) {
+				printGivenLevel(node.left, level - 1, ltr);
+				printGivenLevel(node.right, level - 1, ltr);
+			} else {
+				printGivenLevel(node.right, level - 1, ltr);
+				printGivenLevel(node.left, level - 1, ltr);
+			}
+		}
+	}
+
+	
+	
+	// Write Code to Determine if Two Trees are Identical
+	/*
+	 * Given two trees, return true if they are structurally identical
+	 */
+	boolean identicalTrees(Node a, Node b) {
+		/* 1. both empty */
+		if (a == null && b == null)
+			return true;
+
+		/* 2. both non-empty -> compare them */
+		if (a != null && b != null)
+			return (a.data == b.data && identicalTrees(a.left, b.left) && identicalTrees(a.right, b.right));
+
+		/* 3. one empty, one not -> false */
+		return false;
+	}
+
+	boolean isFoldable(Node node) {
+		boolean res;
+
+		/* base case */
+		if (node == null)
+			return true;
+
+		/* convert left subtree to its mirror */
+		mirror(node.left);
+
+		/*
+		 * Compare the structures of the right subtree and mirrored left subtree
+		 */
+		res = isStructSame(node.left, node.right);
+
+		/* Get the originial tree back */
+		mirror(node.left);
+
+		return res;
+	}
+
+	boolean isStructSame(Node a, Node b) {
+		if (a == null && b == null)
+			return true;
+		if (a != null && b != null && isStructSame(a.left, b.left) && isStructSame(a.right, b.right))
+			return true;
+
+		return false;
+	}
+
+	private void printLeafNodes(Node node) {
+		// base case
+		if (node == null) {
+			return;
+		}
+		if (node.left == null && node.right == null) {
+			System.out.printf("%d ", node.data);
+		}
+		printLeafNodes(node.left);
+		printLeafNodes(node.right);
+	}
 
 }
