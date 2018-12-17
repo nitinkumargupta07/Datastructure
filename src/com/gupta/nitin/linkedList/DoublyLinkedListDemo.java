@@ -27,6 +27,11 @@ public class DoublyLinkedListDemo {
 		addAtposition(6, 66);
 		addAtposition(3, 33);
 		addAtposition(7, 43);
+		printAllForward();
+		printAllBackward();
+		deleteNode(head.next.next.next);
+		printAllForward();
+		printAllBackward();
 		/*
 		 * addAtStart(50); addAtStart(40); addAtStart(30); addAtStart(20);
 		 * addAtStart(10); addAtLast(60); addAtLast(70); addAtLast(80); addAtLast(90);
@@ -48,6 +53,20 @@ public class DoublyLinkedListDemo {
 		printAllForward();	
 		printAllBackward();
 
+	}
+
+	private static void deleteNode(Node node) {
+		if(node.next!=null) {
+			node.next.prev=node.prev;
+		}else {
+			head = node.next;
+		}
+		if(node.prev!=null) {
+			node.prev.next=node.next;
+		}else {
+			tail = node.prev;
+		}
+		
 	}
 
 	static Node split(Node head) {
