@@ -4,6 +4,19 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+/**
+ * (a) Inorder (Left, Root, Right) : 4 2 5 1 3
+ * 
+ * (b) Preorder (Root, Left, Right) * : 1 2 4 5 3
+ * 
+ * (c) Postorder (Left, Right, Root) : 4 5 2 3 1
+ * 
+ * Breadth First or Level Order Traversal : 1 2 3 4 5
+ * 
+ * @author nitin
+ *
+ */
+
 public class BinarySearchTreeDemo {
 	static protected Node root;
 	int size;
@@ -344,8 +357,8 @@ public class BinarySearchTreeDemo {
 			}
 		}
 	}
-	
-	public  boolean isBalanced(Node root) {
+
+	public boolean isBalanced(Node root) {
 		return (maxDepth(root) - minDepth(root) <= 1);
 	}
 
@@ -355,7 +368,7 @@ public class BinarySearchTreeDemo {
 		}
 		return 1 + Math.min(minDepth(root.left), minDepth(root.right));
 	}
-	
+
 	/* Print nodes at a given level */
 	void printGivenLevel(Node node, int level, boolean ltr) {
 		if (node == null)
@@ -373,8 +386,6 @@ public class BinarySearchTreeDemo {
 		}
 	}
 
-	
-	
 	// Write Code to Determine if Two Trees are Identical
 	/*
 	 * Given two trees, return true if they are structurally identical
