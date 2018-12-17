@@ -3,7 +3,7 @@ package com.gupta.nitin.queue;
 class Queue {
 	private int maxSize;
 
-	private int[] queArray;
+	private int[] queueArr;
 
 	private int front;
 
@@ -13,7 +13,7 @@ class Queue {
 
 	public Queue(int s) {
 		maxSize = s;
-		queArray = new int[maxSize];
+		queueArr = new int[maxSize];
 		front = 0;
 		rear = -1;
 		nItems = 0;
@@ -22,12 +22,12 @@ class Queue {
 	public void insert(int j) {
 		if (rear == maxSize - 1)
 			rear = -1;
-		queArray[++rear] = j;
+		queueArr[++rear] = j;
 		nItems++;
 	}
 
 	public int remove() {
-		int temp = queArray[front++];
+		int temp = queueArr[front++];
 		if (front == maxSize)
 			front = 0;
 		nItems--;
@@ -35,7 +35,7 @@ class Queue {
 	}
 
 	public int peekFront() {
-		return queArray[front];
+		return queueArr[front];
 	}
 
 	public boolean isEmpty() {
