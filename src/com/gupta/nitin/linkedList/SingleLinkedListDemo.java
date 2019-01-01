@@ -1,10 +1,10 @@
 package com.gupta.nitin.linkedList;
 
 public class SingleLinkedListDemo {
-	static private Node head, tail;
-	static private int size;
+	private Node head, tail;
+	private int size;
 
-	private static class Node {
+	private class Node {
 		int data;
 		Node next;
 
@@ -13,11 +13,89 @@ public class SingleLinkedListDemo {
 		}
 	}
 
-	static void quickSort(Node l, Node h) {
+	public static void main(String[] args) {
+		SingleLinkedListDemo demo = new SingleLinkedListDemo();
+		demo.addAtStart(50);
+		demo.addAtStart(40);
+		demo.addAtStart(30);
+		demo.addAtStart(20);
+		demo.addAtStart(10);
+		/// demo.printAll();
+		demo.addAtLast(60);
+		demo.addAtLast(70);
+		demo.addAtLast(80);
+		demo.addAtLast(90);
+		demo.addAtLast(60);
+		demo.printAll();
+		demo.addAtposition(6, 66);
+		demo.addAtposition(3, 33);
+		demo.addAtposition(7, 43);
+		/*
+		 * Node node = demo.new Node(49); demo.addNodeAfter(30, node);
+		 * 
+		 * node = demo.new Node(59); demo.addNodeAfter(60, node);
+		 */
+		/*
+		 * demo.addAtLast(60); demo.addAtStart(50); demo.addAtStart(40);
+		 * demo.addAtStart(30); demo.addAtLast(60); demo.addAtStart(20);
+		 * demo.addAtStart(10); /// demo.printAll(); demo.addAtLast(60);
+		 * demo.addAtLast(70); demo.addAtLast(80); demo.addAtLast(90); ///
+		 * demo.printAll(); demo.addAtposition(6, 66); demo.addAtposition(3, 33);
+		 * demo.addAtposition(7, 43);
+		 */
+		//// demo.printAll();
+		/// demo.deleteAtFirst();
+		// demo.deleteAtFirst();
+		/// demo.printAll();
+		// demo.deleteAtLast();
+		// demo.deleteAtLast();
+		/// demo.printAll();
+		// demo.deleteAtPosition(5);
+		/// demo.deleteAtPosition(2);
+		/// demo.printAll();
+		/// demo.removeDuplicate();
+		// demo.printAll();
+		/// demo.printNthFromLast(3);
+		/// demo.printNthFromLast(25);
+		// demo.printAll();
+		/// demo.removeNthFromLast(3);
+		/// demo.printAll();
+		/// demo.removeNthFromLast(25);
+		/// demo.printAll();
+		/// demo.deleteNode(30);
+		/// demo.printAll();
+		/// demo.deleteNode(demo.head.next.next.next);
+
+		// demo.reverse();
+		// demo.head=demo.reverseRecursively(demo.head);
+		// demo.findNthNodeFromLast(4) ;
+		//// Node node1=demo.getMIddleNode();
+		//// System.out.println( "\n"+node1.data);
+		/// demo.printAll();
+		/// demo.deleteMiddleNode();
+		/// boolean flag=demo.isPalindromUp1();
+		/// demo.ifLoopExists();
+		/// demo.printAll();
+		/// Node node1 = demo.new Node(55);
+		/// demo.sortedInsert(node1);
+		// demo.addAtStart(120);
+		/// demo.addAtStart(110);
+		demo.printAll();
+		// demo.Bubblesort() ;
+		/// demo.insertionSort();
+		/// demo.mergeSort(demo.head);
+		demo.quickSort();
+		demo.printAll();
+		//Merge Two sorted node
+		//Node node3 = demo.sortedMerge(demo.head, demo.head);
+		///demo.printAll(node3);
+	}
+
+	void _quickSort(Node l, Node h) {
 		if (h != null && l != h && l != h.next) {
 			Node temp = partition(l, h);
-			quickSort(l, temp);
-			quickSort(temp.next, h);
+			_quickSort(l, temp);
+			_quickSort(temp.next, h);
 		}
 	}
 
@@ -39,13 +117,13 @@ public class SingleLinkedListDemo {
 		return p;
 	}
 
-	static private void quickSort() {
+	private void quickSort() {
 		Node first = head;
 		Node last = tail;
-		quickSort(first, last);
+		_quickSort(first, last);
 	}
 
-	static Node sortedMerge(Node a, Node b) {
+	Node sortedMerge(Node a, Node b) {
 		Node result = null;
 		/* Base cases */
 		if (a == null)
@@ -65,7 +143,7 @@ public class SingleLinkedListDemo {
 
 	}
 
-	static Node mergeSort(Node h) {
+	Node mergeSort(Node h) {
 		if (h == null || h.next == null)
 			return h;
 		Node middle = getMiddle(h);
@@ -78,7 +156,7 @@ public class SingleLinkedListDemo {
 	}
 
 	// Utility function to get the middle of the linked list
-	static Node getMiddle(Node h) {
+	Node getMiddle(Node h) {
 		if (h == null)
 			return h;
 		Node fastptr = h.next;
@@ -94,7 +172,7 @@ public class SingleLinkedListDemo {
 		return slowptr;
 	}
 
-	public static Node insertionSort() {
+	public Node insertionSort() {
 		Node current = head;
 		Node tail = null;
 		while (current != null && tail != head) {
@@ -112,7 +190,7 @@ public class SingleLinkedListDemo {
 		return current;
 	}
 
-	public static void Bubblesort() {
+	public void Bubblesort() {
 		if (size > 1) {
 			for (int i = 0; i < size; i++) {
 				Node currentNode = head;
@@ -130,7 +208,7 @@ public class SingleLinkedListDemo {
 		}
 	}
 
-	static private void sortedInsert(Node new_node) {
+	private void sortedInsert(Node new_node) {
 		Node current = head;
 		if (current == null || current.data >= new_node.data) {
 			new_node.next = head;
@@ -145,7 +223,7 @@ public class SingleLinkedListDemo {
 
 	}
 
-	public static boolean ifLoopExists() {
+	public boolean ifLoopExists() {
 		Node fastPtr = head;
 		Node slowPtr = head;
 		while (fastPtr != null && fastPtr.next != null) {
@@ -158,7 +236,7 @@ public class SingleLinkedListDemo {
 		return false;
 	}
 
-	static Node reverse(Node node) {
+	Node reverse(Node node) {
 		Node prev = null;
 		Node next = null;
 		Node current = node;
@@ -172,7 +250,7 @@ public class SingleLinkedListDemo {
 		return node;
 	}
 
-	static boolean isPalindromUp1() {
+	boolean isPalindromUp1() {
 		boolean flag = false;
 		Node forwordDir = head;
 		Node backwordDir = reverse(forwordDir);
@@ -188,7 +266,7 @@ public class SingleLinkedListDemo {
 		return flag;
 	}
 
-	static private void printAll(Node tmp) {
+	private void printAll(Node tmp) {
 		if (tmp == null)
 			return;
 		System.out.println();
@@ -199,7 +277,7 @@ public class SingleLinkedListDemo {
 
 	}
 
-	static private void deleteMiddleNode() {
+	private void deleteMiddleNode() {
 		if (head == null)
 			return;
 		Node slow = head;
@@ -214,7 +292,7 @@ public class SingleLinkedListDemo {
 		slow.next = slow.next.next;
 	}
 
-	static private Node getMIddleNode() {
+	private Node getMIddleNode() {
 		if (head == null)
 			return null;
 		Node slow = head;
@@ -229,7 +307,7 @@ public class SingleLinkedListDemo {
 		return slow;
 	}
 
-	static private Node reverseRecursively(Node node) {
+	private Node reverseRecursively(Node node) {
 		Node newHead;
 		// base case - tail of original linked list
 		if ((node.next == null)) {
@@ -243,7 +321,7 @@ public class SingleLinkedListDemo {
 		return newHead;
 	}
 
-	static private void reverse() {
+	private void reverse() {
 		Node prev = null;
 		Node current = head;
 		Node next = null;
@@ -256,13 +334,13 @@ public class SingleLinkedListDemo {
 		head = prev;
 	}
 
-	static private void deleteNode(Node node) {
+	private void deleteNode(Node node) {
 		// node.data = node.next.data;
 		node.next = node.next.next;
 		size--;
 	}
 
-	static private void deleteNode(int data) {
+	private void deleteNode(int data) {
 		Node tmp = head.next;
 		Node s = head;
 		while (tmp != null) {
@@ -280,7 +358,7 @@ public class SingleLinkedListDemo {
 	}
 
 	// without know the size of list
-	static private void printNthFromLast(int n) {
+	private void printNthFromLast(int n) {
 		if (head == null)
 			return;
 		Node s = head;
@@ -303,7 +381,7 @@ public class SingleLinkedListDemo {
 
 	// optimize way to find nth element from last
 	// we conside we don't know size of single linked list
-	static private void findNthNodeFromLast(int position) {
+	private void findNthNodeFromLast(int position) {
 		Node t = head;
 		Node s = head;
 		int length = 0;
@@ -324,7 +402,7 @@ public class SingleLinkedListDemo {
 	}
 
 	// without know the size of list remove from last.
-	static private void removeNthFromLast(int n) {
+	private void removeNthFromLast(int n) {
 		if (head == null)
 			return;
 		Node s = head;
@@ -343,7 +421,7 @@ public class SingleLinkedListDemo {
 		t.next = t.next.next;
 	}
 
-	static private void addNodeAfter(int data, Node node) {
+	private void addNodeAfter(int data, Node node) {
 		Node tmp = head;
 		while (tmp != null) {
 			if (data == tmp.data) {
@@ -359,7 +437,7 @@ public class SingleLinkedListDemo {
 
 	}
 
-	static private void removeDuplicate() {
+	private void removeDuplicate() {
 		Node tmp = head;
 		while (tmp != null) {
 			Node current = tmp;
@@ -377,7 +455,7 @@ public class SingleLinkedListDemo {
 		}
 	}
 
-	static private void deleteAtPosition(int position) {
+	private void deleteAtPosition(int position) {
 		if (position == 1)
 			deleteAtFirst();
 		else if (position == size)
@@ -397,7 +475,7 @@ public class SingleLinkedListDemo {
 		}
 	}
 
-	static private void deleteAtLast() {
+	private void deleteAtLast() {
 		if (head == null)
 			return;
 		Node s = head;
@@ -412,7 +490,7 @@ public class SingleLinkedListDemo {
 		size--;
 	}
 
-	static private void deleteAtFirst() {
+	private void deleteAtFirst() {
 		if (head == null)
 			return;
 		Node tmp = head.next;
@@ -420,7 +498,7 @@ public class SingleLinkedListDemo {
 		size--;
 	}
 
-	static private void addAtposition(int position, int data) {
+	private void addAtposition(int position, int data) {
 		if (position == 1)
 			addAtStart(data);
 		else if (position == size + 1)
@@ -444,7 +522,7 @@ public class SingleLinkedListDemo {
 
 	}
 
-	static private void addAtLast(int data) {
+	private void addAtLast(int data) {
 		Node node = new Node(data);
 		if (head == null) {
 			tail = head = node;
@@ -456,7 +534,7 @@ public class SingleLinkedListDemo {
 		size++;
 	}
 
-	static private void printAll() {
+	private void printAll() {
 		Node tmp = head;
 		System.out.println();
 		while (true) {
@@ -469,7 +547,7 @@ public class SingleLinkedListDemo {
 		}
 	}
 
-	static private void addAtStart(int data) {
+	private void addAtStart(int data) {
 		Node node = new Node(data);
 		if (head == null) {
 			head = node;

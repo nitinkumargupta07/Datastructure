@@ -3,14 +3,13 @@ package com.gupta.nitin.cache.concept;
 import java.util.HashMap;
 
 public class LRUCacheDemo1 {
-	static int maxSize = 5;
-	static HashMap<Integer, Node> map = new HashMap<Integer, Node>();
-	static Node head, tail;
-
-	static private class Node {
+	int maxSize=5;
+	HashMap<Integer, Node> map = new HashMap<Integer, Node>();
+	Node head, tail;
+	
+	private class Node {
 		int key, value;
 		Node next, prev;
-
 		public Node(int key, int value) {
 			this.key = key;
 			this.value = value;
@@ -18,7 +17,7 @@ public class LRUCacheDemo1 {
 		}
 	}
 
-	static private void add(int key, int value) {
+	private void add(int key, int value) {
 		Node newNode = new Node(key, value);
 		if (map.containsKey(key)) {
 			Node node = map.get(key);
@@ -26,20 +25,20 @@ public class LRUCacheDemo1 {
 			delete(node);
 			addAtTop(newNode);
 		} else {
-			if (map.size() > maxSize) {
+			if(map.size() > maxSize) {
 				map.remove(tail.key);
 				delete(tail);
 				addAtTop(newNode);
 				map.put(key, newNode);
 				return;
-			} else {
+			}else {
 				addAtTop(newNode);
 				map.put(key, newNode);
 			}
 		}
 	}
 
-	static private void delete(Node node) {
+	private void delete(Node node) {
 		if (node.prev != null) {
 			node.prev.next = node.next;
 		} else {
@@ -53,12 +52,11 @@ public class LRUCacheDemo1 {
 
 	}
 
-	static private Node get(int key) {
-		Node node = map.get(key);
+	private Node get(int key) {
+		Node node=map.get(key);
 		return node;
 	}
-
-	static public void addAtTop(Node node) {
+	public void addAtTop(Node node) {
 		if (head == null) {
 			head = node;
 			tail = null;
@@ -69,9 +67,8 @@ public class LRUCacheDemo1 {
 			head = node;
 		}
 	}
-
 	public static void main(String[] args) {
-		LRUCacheDemo1 demo1 = new LRUCacheDemo1();
+		LRUCacheDemo1 demo1=new LRUCacheDemo1();
 		demo1.add(1, 1);
 		demo1.add(2, 2);
 		demo1.add(3, 3);
